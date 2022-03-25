@@ -2,7 +2,13 @@
 	<article class="slds-card">
 		<div class="slds-grid slds-wrap slds-gutters">
 			<div class="slds-col slds-size_1-of-2 slds-var-m-bottom_x-small">
-				<lightning-input data-name="name" type="text" label="Name" value={state.name}>
+				<lightning-input
+					data-name="name"
+					type="text"
+					label="Name"
+					value={state.name}
+					onchange={nameChange}
+				>
 				</lightning-input>
 			</div>
 			<div class="slds-col slds-size_1-of-2 slds-var-m-bottom_x-small">
@@ -11,16 +17,18 @@
 					label="Age (approximately)"
 					options={ageOptions}
 					value={state.age}
+					onchange={ageChange}
 				>
 				</lightning-combobox>
 			</div>
 			<div class="slds-col slds-size_1-of-2 slds-var-m-bottom_x-small">
 				<lightning-radio-group
-					data-name="sex"
+					data-name="gender"
 					label="Gender"
 					options={sexOptions}
 					value={state.sex}
 					type="radio"
+					onchange={genderChange}
 				>
 				</lightning-radio-group>
 			</div>
@@ -30,6 +38,7 @@
 					type="checkbox"
 					label="Sterilised?"
 					checked={state.sterilised}
+					onchange={sterilisedChange}
 				>
 				</lightning-input>
 				<lightning-input
@@ -37,9 +46,17 @@
 					type="checkbox"
 					label="Vaccinated?"
 					checked={state.vaccinated}
+					onchange={vaccinatedChange}
 				>
 				</lightning-input>
 			</div>
 		</div>
+		<lightning-button
+			variant="brand"
+			label="Register Cat"
+			title="Register Cat"
+			onclick={handleClick}
+		>
+		</lightning-button>
 	</article>
 </template>
