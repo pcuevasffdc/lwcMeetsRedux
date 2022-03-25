@@ -1,0 +1,45 @@
+<template>
+	<article class="slds-card">
+		<div class="slds-grid slds-wrap slds-gutters">
+			<div class="slds-col slds-size_1-of-2 slds-var-m-bottom_x-small">
+				<lightning-input data-name="name" type="text" label="Name" value={state.name}>
+				</lightning-input>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-var-m-bottom_x-small">
+				<lightning-combobox
+					data-name="age"
+					label="Age (approximately)"
+					options={ageOptions}
+					value={state.age}
+				>
+				</lightning-combobox>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-var-m-bottom_x-small">
+				<lightning-radio-group
+					data-name="sex"
+					label="Gender"
+					options={sexOptions}
+					value={state.sex}
+					type="radio"
+				>
+				</lightning-radio-group>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-var-m-bottom_x-small">
+				<lightning-input
+					data-name="sterilised"
+					type="checkbox"
+					label="Sterilised?"
+					checked={state.sterilised}
+				>
+				</lightning-input>
+				<lightning-input
+					data-name="vaccinated"
+					type="checkbox"
+					label="Vaccinated?"
+					checked={state.vaccinated}
+				>
+				</lightning-input>
+			</div>
+		</div>
+	</article>
+</template>
