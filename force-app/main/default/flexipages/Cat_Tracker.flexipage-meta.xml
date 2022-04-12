@@ -3,6 +3,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <identifier>catTrackAppContainerId</identifier>
                 <componentName>catTrackAppContainer</componentName>
             </componentInstance>
         </itemInstances>
