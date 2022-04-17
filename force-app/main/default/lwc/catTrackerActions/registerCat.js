@@ -1,4 +1,4 @@
-import { REGISTER_CAT } from "c/catTrackerConstants";
+import { REGISTER_CAT, CAT_VACCINATED, CAT_STERILISED } from "c/catTrackerConstants";
 
 import registerCat from "@salesforce/apex/CatController.registerCat";
 
@@ -22,3 +22,13 @@ export const register = (name, gender, age, sterilized, vaccinated) => {
 			});
 	};
 };
+
+export const catHasBeenVaccinated = (id)=> ({
+	type: CAT_VACCINATED,
+	payload: { id }
+});
+
+export const catHasBeenSterilised = (id)=> ({
+	type: CAT_STERILISED,
+	payload: { id }
+});

@@ -20,7 +20,7 @@ const catTracker = (state = initialState, action) => {
 			};
 		}
 		case CAT_VACCINATED: {
-			const id = action.payload;
+			const id = action.payload.id;
 			return {
 				...state,
 				byIds: {
@@ -33,7 +33,7 @@ const catTracker = (state = initialState, action) => {
 			}
 		}
 		case CAT_STERILISED: {
-			const id = action.payload;
+			const id = action.payload.id;
 			return {
 				...state,
 				byIds: {
