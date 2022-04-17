@@ -1,0 +1,16 @@
+<template>
+	<lightning-card>
+		<h3 slot="title">
+			<lightning-icon class="slds-m-right_xx-small" icon-name="custom:custom1" size="small"></lightning-icon>
+			{props.record.name}
+		</h3>
+		<div slot="footer">
+				<lightning-badge label="Sterilised" class={isSterilisedCls}></lightning-badge>
+				<lightning-badge label="Vaccinated" class={isVaccinatedCls}></lightning-badge>
+		</div>
+			<div class="slds-p-horizontal_small slds-text-align_left">
+			<p>{props.record.gender}</p>
+			<p>{props.record.age}</p>
+		</div>
+	</lightning-card>
+</template>
