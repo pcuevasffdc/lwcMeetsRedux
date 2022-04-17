@@ -5,7 +5,7 @@ export default class Cat extends Redux(LightningElement) {
 	@api recordId;
 
 	mapStateToProps(state) {
-		return { record : state.register.byIds[this.recordId] };
+		return { record : state.catTracker.byIds[this.recordId] };
 	}
 
 	get isSterilisedCls() {

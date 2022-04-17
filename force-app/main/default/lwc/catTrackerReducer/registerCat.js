@@ -5,7 +5,7 @@ const initialState = {
 	byIds: {}
 };
 
-const register = (state = initialState, action) => {
+const catTracker = (state = initialState, action) => {
 	switch (action.type) {
 		case REGISTER_CAT: {
 			const payload = action.payload;
@@ -24,4 +24,4 @@ const register = (state = initialState, action) => {
 	}
 };
 
-export { register };
+export { catTracker };

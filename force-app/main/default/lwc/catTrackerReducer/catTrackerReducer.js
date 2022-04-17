@@ -1,3 +1,3 @@
-import { register } from "./registerCat";
+import { catTracker } from "./registerCat";
 
-export default { register };
+export default { catTracker };
