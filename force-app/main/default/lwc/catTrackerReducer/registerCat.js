@@ -1,4 +1,4 @@
-import { REGISTER_CAT } from "c/catTrackerConstants";
+import { REGISTER_CAT, CAT_VACCINATED, CAT_STERILISED } from "c/catTrackerConstants";
 
 const initialState = {
 	allIds: [],
@@ -18,6 +18,32 @@ const catTracker = (state = initialState, action) => {
 					[payload.id]: { ...payload }
 				}
 			};
+		}
+		case CAT_VACCINATED: {
+			const id = action.payload;
+			return {
+				...state,
+				byIds: {
+					...state.byIds,
+					[id]: {
+						...state.byIds[id],
+						vaccinated: true
+					}
+				}
+			}
+		}
+		case CAT_STERILISED: {
+			const id = action.payload;
+			return {
+				...state,
+				byIds: {
+					...state.byIds,
+					[id]: {
+						...state.byIds[id],
+						sterilised: true
+					}
+				}
+			}
 		}
 		default:
 			return state;
