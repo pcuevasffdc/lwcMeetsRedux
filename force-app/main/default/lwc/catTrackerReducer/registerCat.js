@@ -1,4 +1,9 @@
-import { REGISTER_CAT, CAT_VACCINATED, CAT_STERILISED } from "c/catTrackerConstants";
+import {
+	REGISTER_CAT,
+	CAT_VACCINATED,
+	CAT_STERILISED,
+	INITIALIZE_APP
+} from "c/catTrackerConstants";
 
 const initialState = {
 	allIds: [],
@@ -7,6 +12,15 @@ const initialState = {
 
 const catTracker = (state = initialState, action) => {
 	switch (action.type) {
+		case INITIALIZE_APP: {
+			const payload = action.payload;
+			const allIds = Object.keys(payload) || [];
+			return {
+				...state,
+				allIds: [...allIds],
+				byIds: { ...payload }
+			};
+		}
 		case REGISTER_CAT: {
 			const payload = action.payload;
 			console.log(payload);
@@ -30,7 +44,7 @@ const catTracker = (state = initialState, action) => {
 						vaccinated: true
 					}
 				}
-			}
+			};
 		}
 		case CAT_STERILISED: {
 			const id = action.payload.id;
@@ -43,7 +57,7 @@ const catTracker = (state = initialState, action) => {
 						sterilised: true
 					}
 				}
-			}
+			};
 		}
 		default:
 			return state;
