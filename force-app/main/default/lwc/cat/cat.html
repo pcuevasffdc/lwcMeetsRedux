@@ -5,9 +5,11 @@
 			{props.record.name}
 		</h3>
 		<lightning-button if:true={catNeedsVet} label="Visit Vet" slot="actions" onclick={handleVetVisit}></lightning-button>
+		<lightning-button if:true={isInAdoption} label="Adopt" slot="actions" onclick={handleAdoption}></lightning-button>
 		<div slot="footer">
 				<lightning-badge label="Sterilised" class={isSterilisedCls}></lightning-badge>
 				<lightning-badge label="Vaccinated" class={isVaccinatedCls}></lightning-badge>
+				<lightning-badge if:true={isInAdoption} label="Available for Adoption" class="slds-theme_alt-inverse"></lightning-badge>
 		</div>
 			<div class="slds-p-horizontal_small slds-text-align_left">
 			<p>{props.record.gender}</p>
