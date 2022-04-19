@@ -4,6 +4,7 @@
 			<lightning-icon class="slds-m-right_xx-small" icon-name="custom:custom1" size="small"></lightning-icon>
 			{props.record.name}
 		</h3>
+		<lightning-button if:true={catNeedsVet} label="Visit Vet" slot="actions" onclick={handleVetVisit}></lightning-button>
 		<div slot="footer">
 				<lightning-badge label="Sterilised" class={isSterilisedCls}></lightning-badge>
 				<lightning-badge label="Vaccinated" class={isVaccinatedCls}></lightning-badge>
