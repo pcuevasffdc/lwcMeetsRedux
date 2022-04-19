@@ -7,6 +7,7 @@ import {
 
 import registerCat from "@salesforce/apex/CatController.registerCat";
 import getAllCats from "@salesforce/apex/CatController.getAllCats";
+import updateCat from "@salesforce/apex/CatController.updateCat";
 
 export const register = (name, gender, age, sterilized, vaccinated) => {
 	return (dispatch) => {
@@ -29,15 +30,40 @@ export const register = (name, gender, age, sterilized, vaccinated) => {
 	};
 };
 
-export const catHasBeenVaccinated = (id) => ({
-	type: CAT_VACCINATED,
-	payload: { id }
-});
+export const vaccinateCat = (id) => {
+	return (dispatch, getState) => {
+		const cat = getState().catTracker.byIds[id];
+		cat.vaccinated = true;
+		updateCat({strCat: JSON.stringify(cat)})
+			.then((result) => {
+				dispatch({
+					type: CAT_VACCINATED,
+					payload: { id }
+				});
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
+};
 
-export const catHasBeenSterilised = (id) => ({
-	type: CAT_STERILISED,
-	payload: { id }
-});
+export const steriliseCat = (id) => {
+	return (dispatch, getState) => {
+		const cat = getState().catTracker.byIds[id];
+		cat.sterilized = true;
+		updateCat({strCat: JSON.stringify(cat)})
+			.then((result) => {
+				console.log(JSON.parse(JSON.stringify(result)));
+				dispatch({
+					type: CAT_STERILISED,
+					payload: { id }
+				});
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
+};
 
 export const initialize = () => {
 	return (dispatch) => {
