@@ -48,4 +48,22 @@ public with sharing class CatController {
         }
     }
 
+    @AuraEnabled
+    public static Map<String, CatWrapper> deregisterAdoptedCat(Id catId){
+        Map<String, CatWrapper> mapCatsById = new Map<String, CatWrapper>();
+        try {
+            List<Cat__c> adoptedCatsList = [SELECT Id, Name FROM Cat__c WHERE Id = :catId];
+            delete adoptedCatsList;
+            List<Cat__c> catList = [SELECT Id, Name, Gender__c, Age__c, Sterilized__c, Vaccinated__c FROM Cat__c];
+            if(catList.size() > 0){
+                for(Cat__c cat : catList){
+                    mapCatsById.put(cat.Id, new CatWrapper(cat));
+                }
+            }
+            return mapCatsById;
+        } catch (Exception e) {
+            return mapCatsById;
+        }
+    }
+
 }
