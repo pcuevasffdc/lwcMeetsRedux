@@ -1,5 +1,6 @@
 import {
 	REGISTER_CAT,
+	CAT_ADOPTED,
 	CAT_VACCINATED,
 	CAT_STERILISED,
 	INITIALIZE_APP
@@ -12,7 +13,8 @@ const initialState = {
 
 const catTracker = (state = initialState, action) => {
 	switch (action.type) {
-		case INITIALIZE_APP: {
+		case INITIALIZE_APP:
+		case CAT_ADOPTED: {
 			const payload = action.payload;
 			const allIds = Object.keys(payload) || [];
 			return {

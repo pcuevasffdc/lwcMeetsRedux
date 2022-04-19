@@ -1,5 +1,6 @@
 import {
 	REGISTER_CAT,
+	CAT_ADOPTED,
 	CAT_VACCINATED,
 	CAT_STERILISED,
 	INITIALIZE_APP
@@ -8,6 +9,7 @@ import {
 import registerCat from "@salesforce/apex/CatController.registerCat";
 import getAllCats from "@salesforce/apex/CatController.getAllCats";
 import updateCat from "@salesforce/apex/CatController.updateCat";
+import deregisterAdoptedCat from "@salesforce/apex/CatController.deregisterAdoptedCat";
 
 export const register = (name, gender, age, sterilized, vaccinated) => {
 	return (dispatch) => {
@@ -77,4 +79,19 @@ export const initialize = () => {
 				console.error(error);
 			});
 	};
+};
+
+export const adoptCat = (id) => {
+	return (dispatch) => {
+		deregisterAdoptedCat({catId: id})
+			.then((result) => {
+				dispatch({
+					type: CAT_ADOPTED,
+					payload: JSON.parse(JSON.stringify(result))
+				});
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
 };
