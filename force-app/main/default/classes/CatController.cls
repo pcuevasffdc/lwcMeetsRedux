@@ -40,7 +40,7 @@ public with sharing class CatController {
     public static CatWrapper updateCat(String strCat){
         try {
             CatWrapper wrapper =  (CatWrapper)JSON.deserialize(strCat, CatWrapper.class);
-            Cat__c cat  = CatWrapper.getSobject(wrapper, true);
+            Cat__c cat  = CatWrapper.getSobject(wrapper, false);
             update cat;
             return wrapper;
         } catch (Exception e) {

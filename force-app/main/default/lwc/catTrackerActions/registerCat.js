@@ -53,7 +53,6 @@ export const steriliseCat = (id) => {
 		cat.sterilized = true;
 		updateCat({strCat: JSON.stringify(cat)})
 			.then((result) => {
-				console.log(JSON.parse(JSON.stringify(result)));
 				dispatch({
 					type: CAT_STERILISED,
 					payload: { id }
