@@ -1,4 +1,5 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track } from "lwc";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { Redux } from "c/lwcRedux";
 import actions from "c/catTrackerActions";
 
@@ -9,14 +10,14 @@ export default class Cat extends Redux(LightningElement) {
 	inAdoption = false;
 
 	mapStateToProps(state) {
-		return { record : state.catTracker.byIds[this.recordId] };
+		return { record: state.catTracker.byIds[this.recordId] };
 	}
 
-	mapDispatchToProps(){
+	mapDispatchToProps() {
 		return {
-			steriliseCat : actions.registerCat.steriliseCat,
-			vaccinateCat : actions.registerCat.vaccinateCat,
-			adoptCat : actions.registerCat.adoptCat
+			steriliseCat: actions.registerCat.steriliseCat,
+			vaccinateCat: actions.registerCat.vaccinateCat,
+			adoptCat: actions.registerCat.adoptCat
 		};
 	}
 
@@ -44,9 +45,36 @@ export default class Cat extends Redux(LightningElement) {
 			this.props.vaccinateCat(this.recordId);
 		}
 		this.inAdoption = true;
+		this.showPostedToast();
 	}
 
 	handleAdoption() {
 		this.props.adoptCat(this.recordId);
+	}
+
+	showPostedToast() {
+		const evt = new ShowToastEvent({
+			title: "Posted!",
+			message:
+				"Hooray! Now that we are sure that " +
+				this.props.record.name +
+				" is healthy, we have posted " +
+				this.getPossessivePronounForCat() +
+				" to social networks to look for a forever home!",
+			variant: "success"
+		});
+		this.dispatchEvent(evt);
+	}
+
+	getPossessivePronounForCat() {
+		console.log(this.props.record.gender);
+		switch (this.props.record.gender) {
+			case "Female":
+				return "her";
+			case "Male":
+				return "him";
+			default:
+				return "them";
+		}
 	}
 }
