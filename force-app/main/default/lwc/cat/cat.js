@@ -50,6 +50,16 @@ export default class Cat extends Redux(LightningElement) {
 
 	handleAdoption() {
 		this.props.adoptCat(this.recordId);
+		this.showAdoptedToast();
+	}
+
+	showAdoptedToast() {
+		const evt = new ShowToastEvent({
+			title: "Adopted!",
+			message: "Hooray! Adoption process for " + this.props.record.name + " is complete!",
+			variant: "success"
+		});
+		this.dispatchEvent(evt);
 	}
 
 	showPostedToast() {
