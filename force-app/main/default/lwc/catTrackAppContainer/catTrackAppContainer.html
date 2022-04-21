@@ -1,5 +1,12 @@
 <template>
 	<c-provider oninit={initialize} store={store}>
-		<c-cat-tracker></c-cat-tracker>
+		<lightning-card title="Cat tracker">
+			<div class="container">
+				<div class="slds-m-around_medium">
+					<c-cat-card></c-cat-card>
+					<c-cat-list></c-cat-list>
+				</div>
+			</div>
+		</lightning-card>
 	</c-provider>
 </template>
